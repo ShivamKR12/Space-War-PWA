@@ -235,8 +235,9 @@ class Score(pygame.sprite.Sprite):
 
 def main():
     # Initialize pygame
-    pygame.mixer.pre_init(44100, 32, 2, 1024)
+    pygame.mixer.pre_init(44100, -16, 2, 1024)
     pygame.init()
+    pygame.mixer.set_num_channels(64)
     if pygame.mixer and not pygame.mixer.get_init():
         print("Warning, no sound")
         pygame.mixer = None
@@ -387,7 +388,7 @@ def main():
         pygame.display.flip()
 
         # cap the framerate at 40fps. Also called 40HZ or 40 times per second.
-        clock.tick(40)
+        clock.tick()
 
     if pygame.mixer:
         pygame.mixer.music.fadeout(1000)
